@@ -1,0 +1,54 @@
+# Config file for automatic testing at travis-ci.com
+language: python
+
+jobs:
+  fast_finish: true
+  include:
+    - env:
+        - TOXENV=docs
+        - READTHEDOCS=true
+      name: "Documentation"
+      python: 3.6
+      addons:
+        apt:
+            packages:
+                - pandoc
+    - env: TOXENV=black
+      name: "Black and flake8 compliance"
+      python: 3.6
+    - env: TOXENV=py38
+      name: "Python3.8 (Linux)"
+      python: 3.8
+    - env: TOXENV=py37
+      name: "Python3.7 (Linux)"
+      python: 3.7
+    - env: TOXENV=py36
+      name: "Python3.6 (Linux)"
+      python: 3.6
+
+
+before_install:
+    - printenv
+    - pip install --upgrade pip
+
+install:
+    - pip install -U tox-travis
+
+script: tox -e $TOXENV
+
+# Assuming you have installed the travis-ci CLI tool, after you
+# create the Github repo and add it to Travis, run the
+# following command to finish PyPI deployment setup:
+# $ travis encrypt --add deploy.password --com
+deploy:
+  provider: pypi
+  distributions: sdist bdist_wheel
+  skip_cleanup: true
+  skip_existing: true
+  user: ellesmith88
+  password:
+    secure: PLEASE_REPLACE_ME
+  on:
+    tags: true
+    repo: ellesmith88/testing_project
+    python: 3.8

@@ -12,4 +12,4 @@ from testing_project.testing_project import my_function
 
 def test_my_function():
     resp = my_function()
-    assert resp
+    assert resp == "Hello World"

@@ -8,4 +8,4 @@ __license__ = "BSD - see LICENSE file in top-level package directory"
 
 def my_function():
     """ Function to return Hello World"""
-    return "Hi World"
+    return "Hello World"

@@ -6,29 +6,27 @@ jobs:
     - TOXENV=docs
     - READTHEDOCS=true
     name: Documentation
-    python: 3.6
+    python: 3.7
     addons:
       apt:
         packages:
         - pandoc
   - env: TOXENV=black
     name: Black and flake8 compliance
-    python: 3.6
-  - env: TOXENV=py38
-    name: Python3.8 (Linux)
-    python: 3.8
+    python: 3.7
   - env: TOXENV=py37
     name: Python3.7 (Linux)
     python: 3.7
-  - env: TOXENV=py36
-    name: Python3.6 (Linux)
-    python: 3.6
+
 before_install:
 - printenv
 - pip install --upgrade pip
+-
 install:
 - pip install -U tox-travis
+-
 script: tox -e $TOXENV
+
 deploy:
   provider: pypi
   distributions: sdist bdist_wheel
@@ -40,4 +38,4 @@ deploy:
   on:
     tags: true
     repo: ellesmith88/testing_project
-    python: 3.8
+    python: 3.7

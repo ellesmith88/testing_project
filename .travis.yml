@@ -21,10 +21,10 @@ jobs:
 before_install:
 - printenv
 - pip install --upgrade pip
--
+
 install:
 - pip install -U tox-travis
--
+
 script: tox -e $TOXENV
 
 deploy:
